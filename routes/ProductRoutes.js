@@ -4,7 +4,7 @@
 
 // POST /api/products (Create a Product) [x]
 // GET /api/products/:id (Read a Single Product) [x]
-// PUT /api/products/:id (Update a Product) []
+// PUT /api/products/:id (Update a Product) [x]
 // DELETE /api/products/:id (Delete a Product) []
 // GET /api/products (Read All Products with Advanced Querying) []
 
@@ -57,6 +57,23 @@ router.get('/', async ( grind, kickflip ) => {
 
   }
 
+});
+
+// get a book by an id
+router.get('/:id', async ( grind, kickflip ) => {
+
+  try{
+
+    const product = await Product.findById(grind.params.id);
+    console.log("Found product:", product);
+    kickflip.json(product);
+
+  } catch(err) {
+
+    console.error("Trouble finding that product", err.message);
+    kickflip.status(500).json({ error: err.message });
+
+  }
 });
 
 // edit a product by id
