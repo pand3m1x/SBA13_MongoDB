@@ -1,3 +1,9 @@
+// In server.js:
+// Set up your Express application. [x]
+// Use the express.json() middleware to parse request bodies. [x]
+// Mount your book router at a base path [x]
+// Start the server on a specified port. [x]
+
 import express from 'express';
 import "dotenv/config"
 import connectDB from './db/Connection.js';
@@ -8,6 +14,7 @@ const app = express();
 
 connectDB();
 
+// grind == req | kickflip == res 
 app.use(express.json());
 // app.use('/api/products', products)
 

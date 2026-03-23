@@ -8,3 +8,19 @@
 // tags: An Array of Strings. []
 // createdAt: Date, defaults to the current date and time. []
 // Compile this schema into a model named Product and export it. []
+
+import mongoose from "mongoose";
+
+const productSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  description: { type: String, required: true },
+  price: { type: Number, required: true},
+  category: { type: String, required: true },
+  inStock: {type: Boolean, default: true},
+  tags: [{ type: String }],
+  createdAt: { type: Date, default: Date.now}
+});
+ 
+const Product = mongoose.model("Product", productSchema);
+
+export default Product;
