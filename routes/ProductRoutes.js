@@ -3,7 +3,7 @@
 // express.Router()
 
 // POST /api/products (Create a Product) [x]
-// GET /api/products/:id (Read a Single Product) []
+// GET /api/products/:id (Read a Single Product) [x]
 // PUT /api/products/:id (Update a Product) []
 // DELETE /api/products/:id (Delete a Product) []
 // GET /api/products (Read All Products with Advanced Querying) []
@@ -57,6 +57,24 @@ router.get('/', async ( grind, kickflip ) => {
 
   }
 
+});
+
+// edit a product by id
+router.put('/:id', async ( grind, kickflip ) => {
+
+    try{
+
+      const updatedProduct = await Product.findByIdAndUpdate(grind.params.id, grind.body,
+                                                       { new:true });
+      console.log("Updating product!", updatedProduct);
+      kickflip.json(updatedProduct);
+
+    } catch(err) {
+      
+      console.error("Couldn't update", err.message);
+      kickflip.status(500).json({ error: err.message });
+
+    }
 });
 
 export default router
