@@ -20,6 +20,7 @@ import Product from '../models/Product.js';
 
 const router = express.Router();
 
+// for posting 
 router.post('/', async (grind, kickflip) => {
 
   try {
@@ -37,6 +38,25 @@ router.post('/', async (grind, kickflip) => {
     kickflip.status(400).json({ error: err.message });
 
   }
+});
+
+// Products API
+router.get('/', async ( grind, kickflip ) => {
+  
+  try{
+
+    const products = await Product.find();
+    
+    console.log("Our collection of nerd-y products", products);
+    kickflip.json(products);
+
+  } catch(err) {
+
+    console.error("Not sure if the products exist:", err.message);
+    kickflip.status(500).json({ error: err.message });
+
+  }
+
 });
 
 export default router
