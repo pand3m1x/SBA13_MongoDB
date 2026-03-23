@@ -1,10 +1,11 @@
 {
-  "name": "sba_13",
+  "name": "lab2",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +13,8 @@
   "dependencies": {
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
-    "mongoose": "^9.3.0"
-  }
+    "mongoose": "^9.3.0",
+    "nodemon": "^3.1.14"
+  },
+  "type": "module"
 }
