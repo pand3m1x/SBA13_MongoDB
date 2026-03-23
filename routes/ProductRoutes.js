@@ -1,11 +1,7 @@
-// Is this in my init?
-
-// express.Router()
-
 // POST /api/products (Create a Product) [x]
 // GET /api/products/:id (Read a Single Product) [x]
 // PUT /api/products/:id (Update a Product) [x]
-// DELETE /api/products/:id (Delete a Product) []
+// DELETE /api/products/:id (Delete a Product) [x]
 // GET /api/products (Read All Products with Advanced Querying) []
 
 // category: Filter products by a specific category. []
@@ -20,6 +16,7 @@ import Product from '../models/Product.js';
 
 const router = express.Router();
 
+// grind == req | kickflip == res
 // for posting 
 router.post('/', async (grind, kickflip) => {
 
@@ -93,5 +90,23 @@ router.put('/:id', async ( grind, kickflip ) => {
 
     }
 });
+
+// delete a product by id
+router.delete('/:id', async (grind, kickflip) => {
+
+  try{
+
+    const deletedProduct = await Product.findByIdAndDelete(grind.params.id);
+    console.log("Are you sure? Nah kidding, too late, already done.", deletedProduct);
+    kickflip.json({ message: "Deleted" });
+
+  } catch (err) {
+
+      console.error("Couldn't delete?", err.message);
+      kickflip.status(500).json({ error: err.message });
+
+  }
+  
+})
 
 export default router
