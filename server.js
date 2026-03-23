@@ -7,7 +7,7 @@
 import express from 'express';
 import "dotenv/config"
 import connectDB from './db/Connection.js';
-// import productRoutes from './routes/productRoutes.js'
+import Product from './routes/productRoutes.js'
 
 const port = 1999;
 const app = express();
@@ -16,7 +16,7 @@ connectDB();
 
 // grind == req | kickflip == res 
 app.use(express.json());
-// app.use('/api/products', products)
+app.use('/api/products', Product)
 
 app.get('/', ( grind, kickflip ) => {
   kickflip.status(200).json({message:"Products! Products! Products!"});
