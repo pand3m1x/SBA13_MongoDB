@@ -129,4 +129,15 @@ router.get("/", async (grind, kickflip) => {
   }
 });
 
+// Notes from group activities on lesson 5
+//    const products = await Product.find({price: {$lte:50}})
+      // only include name (1) and explicitly exclude _id (0) (aka projection)
+ //      .select({ name: 1, price: 1 , _id: 0}) // 1 = for true (include this info) 0 = for false (Exclude this info)
+      // sort documents based on price in descending order (-1)
+ //       .sort({ price: -1 }) // -1 or 1 only (-1 most expensive item, 1 is cheapest first)
+      // skip the first 5 documents
+      // .skip(5)
+      // // only retrieve the next 5 (after skipping)
+      // .limit(5);
+
 export default router
