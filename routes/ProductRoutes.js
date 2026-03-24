@@ -16,6 +16,9 @@ import Product from '../models/Product.js';
 
 const router = express.Router();
 
+// const page = parseInt(req.query.page) || 1;
+// const pageSize = parseInt(req.query.limit) || 5;
+
 // grind == req | kickflip == res
 // for posting 
 router.post('/', async (grind, kickflip) => {
@@ -108,5 +111,22 @@ router.delete('/:id', async (grind, kickflip) => {
   }
   
 })
+
+// trying to get products by category
+router.get("/", async (grind, kickflip) => {
+  try {
+
+    // retieve products by category
+    const productsCategory = await Product.find({ category: grind.query.category });
+    console.log(`Products in category ${grind.query.category}:`, productsCategory);
+    kickflip.status(200).json(productsCategory);
+
+  } catch (err) {
+
+    console.error("Couldn't find that category", err.message);
+    kickflip.status(400).json({ message: err.message });
+
+  }
+});
 
 export default router
